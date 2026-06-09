@@ -1,0 +1,46 @@
+{
+  "name": "jikan",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev": "nodemon --watch . --ext js,html,css --exec electron .",
+    "package-win": "electron-packager . Jikan --platform=win32 --arch=x64 --out=dist --overwrite --icon=tomato.ico",
+    "build-win": "electron-builder --win"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Pomodoro timer app",
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "electron": "^41.7.0",
+    "electron-builder": "^26.8.1",
+    "electron-packager": "^17.1.2",
+    "electron-reload": "^2.0.0-alpha.1",
+    "nodemon": "^3.1.14"
+  },
+  "build": {
+    "appId": "com.jikan.pomodoro",
+    "productName": "Jikan",
+    "win": {
+      "target": "nsis",
+      "icon": "tomato.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "tomato.ico"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/.cache/**"
+    ]
+  }
+}

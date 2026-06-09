@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controla tu tiempo!</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div id="notificacion-custom">
+        <strong id="noti-titulo">Gestor de Tareas</strong>
+        <p id="noti-mensaje">¡Tiempo terminado!</p>
+    </div>
+
+    <!-- MENU HISTORIAL -->
+    <input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" id="btn-hamburguesa">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
+<label for="menu-toggle" id="menu-overlay"></label>
+<div id="menu-historial">
+    <div class="header-menu">
+        <label for="ajustes-toggle" id="btn-ajustes">⚙</label>
+
+        <div class="header-acciones-historial">
+            <h3>Historial de Tareas</h3>
+            
+            <button id="btn-borrarHistorial" class="borrarHistorial">
+                <span>Limpiar todo</span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-miterlimit="2" stroke-linejoin="round" fill-rule="evenodd" clip-rule="evenodd">
+                        <path fill-rule="nonzero" d="m12.002 2.005c5.518 0 9.998 4.48 9.998 9.997 0 5.518-4.48 9.998-9.998 9.998-5.517 0-9.997-4.48-9.997-9.998 0-5.517 4.48-9.997 9.997-9.997zm0 1.5c-4.69 0-8.497 3.807-8.497 8.497s3.807 8.498 8.497 8.498 8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497zm0 7.425 2.717-2.718c.146-.146.339-.219.531-.219.404 0 .75.325.75.75 0 .193-.073.384-.219.531l-2.717 2.717 2.727 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.53-.219l-2.729-2.728-2.728 2.728c-.146 1.46-.338.219-.53.219-.401 0-.751-.323-.751-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div id="historial"></div>
+</div>
+    <!-- MENU AJUSTES (pantalla completa) -->
+    <input type="checkbox" id="ajustes-toggle">
+    <div id="menu-ajustes">
+        <div class="header-ajustes">
+            <h3>Ajustes</h3>
+            <label for="ajustes-toggle" id="btn-cerrar-ajustes">✕</label>
+        </div>
+
+        <div class="ajuste-grupo">
+            <span class="ajuste-titulo">⏱ Tiempo de estudio</span>
+            <div class="controles-ajuste-fila">
+                <button id="btn-menos-estudio" class="btn-circular-modal">−</button>
+                <input type="number" id="input-minutos-estudio" min="1" max="60" value="25">
+                <button id="btn-mas-estudio" class="btn-circular-modal">+</button>
+                <button id="btn-confirmar-estudio" class="btn-circular-modal checkmark-modal">✓</button>
+            </div>
+        </div>
+
+        <div class="ajuste-grupo">
+            <span class="ajuste-titulo">☕ Tiempo de descanso</span>
+            <div class="controles-ajuste-fila">
+                <button id="btn-menos-descanso" class="btn-circular-modal">−</button>
+                <input type="number" id="input-minutos-descanso" min="1" max="30" value="5">
+                <button id="btn-mas-descanso" class="btn-circular-modal">+</button>
+                <button id="btn-confirmar-descanso" class="btn-circular-modal checkmark-modal">✓</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contenedor-principal">
+        <p id="modo-label">Jikan</p>
+
+        <div id="tomate">
+            <div id="tap-hint">
+                <span>tap!</span>
+                <svg width="70" height="60" viewBox="0 0 70 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 5 Q30 10 50 30 Q60 40 65 52" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="5,4"/>
+                    <polygon points="56,50 66,54 66,44" fill="#c0392b"/>
+                </svg>
+            </div>
+            <svg id="manzana-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="100" cy="115" rx="72" ry="68" fill="#e74c3c"/>
+                <ellipse cx="78" cy="88" rx="18" ry="12" fill="rgba(255,255,255,0.25)" transform="rotate(-20 78 88)"/>
+                <path d="M100 52 Q108 30 120 25" stroke="#5d4037" stroke-width="4" stroke-linecap="round" fill="none"/>
+                <path d="M108 40 Q125 25 130 38 Q118 48 108 40Z" fill="#27ae60"/>
+                <path d="M108 40 Q119 36 130 38" stroke="#1e8449" stroke-width="1" fill="none"/>
+            </svg>
+            <h1 id="temporizador">25:00</h1>
+        </div>
+
+        <div id="controles-timer">
+            <button id="btn-iniciar">
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="12,8 32,20 12,32" stroke="#1a1a2e" stroke-width="2.5" stroke-linejoin="round" fill="#1a1a2e"/>
+                </svg>
+            </button>
+            <button id="btn-pausar">
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="8" width="7" height="24" rx="2" stroke="#1a1a2e" stroke-width="2.5" fill="#1a1a2e"/>
+                    <rect x="23" y="8" width="7" height="24" rx="2" stroke="#1a1a2e" stroke-width="2.5" fill="#1a1a2e"/>
+                </svg>
+            </button>
+            <button id="btn-reiniciar">
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 12 A12 12 0 1 0 30 22" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <polygon points="28,7 34,14 22,15" fill="#1a1a2e"/>
+                </svg>
+            </button>
+        </div>
+
+        <div id="seccion-tarea">
+            <input type="text" id="input-tarea" placeholder="Escribe tu tarea!" />
+            <button id="btn-set-tarea" class="animated-button">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                </svg>
+                <span class="text">Asignar</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                </svg>
+            </button>
+            <div class="contenedor-vista-tarea">
+               <p id="nombre-tarea"></p>
+               <button id="btn-ver-tarea">👁</button>
+            </div>
+            <div id="botones-accion-tarea">
+                <button id="btn-completado" class="learn-more">✓ Completada</button>
+                <button id="btn-abandonado" class="learn-more">✗ Abandonada</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contenedor-tiempo-flotante">
+        <div class="tarjeta-tiempo-flotante">
+            <span class="titulo-modal">Ajustar Minutos</span>
+            <div class="controles-ajuste-fila">
+                <button id="btn-menos-modal" class="btn-circular-modal">−</button>
+                <input type="number" id="input-minutos-modal" min="1" max="60" value="25">
+                <button id="btn-mas-modal" class="btn-circular-modal">+</button>
+            </div>
+            <button id="btn-confirmar-modal" class="btn-circular-modal checkmark-modal">✓</button>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
