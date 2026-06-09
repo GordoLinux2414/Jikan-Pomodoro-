@@ -13,6 +13,9 @@ Pomodoro timer de escritorio con gestión de tareas, historial persistente y una
 
 </div>
 
+Link directo para la descarga de mi app:
+https://www.mediafire.com/file/fkzjubbcg8i9zms/Jikan+Setup+1.0.0.exe/file
+
 ---
 
 ## ¿Qué es Jikan?
